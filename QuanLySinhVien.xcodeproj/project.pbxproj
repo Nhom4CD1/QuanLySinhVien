@@ -14,6 +14,12 @@
 		05BD32941EC215EF004C6F89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BD32921EC215EF004C6F89 /* LaunchScreen.storyboard */; };
 		05BD329F1EC215F0004C6F89 /* QuanLySinhVienTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD329E1EC215F0004C6F89 /* QuanLySinhVienTests.swift */; };
 		05BD32AA1EC215F0004C6F89 /* QuanLySinhVienUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32A91EC215F0004C6F89 /* QuanLySinhVienUITests.swift */; };
+		05BD32BD1EC2176D004C6F89 /* MangementStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32BC1EC2176D004C6F89 /* MangementStudentController.swift */; };
+		05BD32BF1EC217D3004C6F89 /* StudentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32BE1EC217D3004C6F89 /* StudentDetailController.swift */; };
+		05BD32C11EC21815004C6F89 /* AddStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32C01EC21815004C6F89 /* AddStudentController.swift */; };
+		05BD32C31EC21889004C6F89 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32C21EC21889004C6F89 /* StudentModel.swift */; };
+		05BD32C51EC21918004C6F89 /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32C41EC21918004C6F89 /* StudentTableViewCell.swift */; };
+		05BD32C71EC22970004C6F89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD32C61EC22970004C6F89 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,12 @@
 		05BD32A51EC215F0004C6F89 /* QuanLySinhVienUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuanLySinhVienUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BD32A91EC215F0004C6F89 /* QuanLySinhVienUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuanLySinhVienUITests.swift; sourceTree = "<group>"; };
 		05BD32AB1EC215F0004C6F89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05BD32BC1EC2176D004C6F89 /* MangementStudentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MangementStudentController.swift; sourceTree = "<group>"; };
+		05BD32BE1EC217D3004C6F89 /* StudentDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDetailController.swift; sourceTree = "<group>"; };
+		05BD32C01EC21815004C6F89 /* AddStudentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStudentController.swift; sourceTree = "<group>"; };
+		05BD32C21EC21889004C6F89 /* StudentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
+		05BD32C41EC21918004C6F89 /* StudentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
+		05BD32C61EC22970004C6F89 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +109,16 @@
 		05BD32881EC215EF004C6F89 /* QuanLySinhVien */ = {
 			isa = PBXGroup;
 			children = (
+				05BD32B91EC2163D004C6F89 /* View */,
+				05BD32B81EC2162F004C6F89 /* Controller */,
+				05BD32B71EC2160C004C6F89 /* Model */,
 				05BD32891EC215EF004C6F89 /* AppDelegate.swift */,
 				05BD328B1EC215EF004C6F89 /* ViewController.swift */,
 				05BD328D1EC215EF004C6F89 /* Main.storyboard */,
 				05BD32901EC215EF004C6F89 /* Assets.xcassets */,
 				05BD32921EC215EF004C6F89 /* LaunchScreen.storyboard */,
 				05BD32951EC215EF004C6F89 /* Info.plist */,
+				05BD32C61EC22970004C6F89 /* Constants.swift */,
 			);
 			path = QuanLySinhVien;
 			sourceTree = "<group>";
@@ -123,6 +139,32 @@
 				05BD32AB1EC215F0004C6F89 /* Info.plist */,
 			);
 			path = QuanLySinhVienUITests;
+			sourceTree = "<group>";
+		};
+		05BD32B71EC2160C004C6F89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				05BD32C21EC21889004C6F89 /* StudentModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		05BD32B81EC2162F004C6F89 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05BD32C01EC21815004C6F89 /* AddStudentController.swift */,
+				05BD32BC1EC2176D004C6F89 /* MangementStudentController.swift */,
+				05BD32BE1EC217D3004C6F89 /* StudentDetailController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		05BD32B91EC2163D004C6F89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				05BD32C41EC21918004C6F89 /* StudentTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				05BD328C1EC215EF004C6F89 /* ViewController.swift in Sources */,
+				05BD32C31EC21889004C6F89 /* StudentModel.swift in Sources */,
+				05BD32BD1EC2176D004C6F89 /* MangementStudentController.swift in Sources */,
+				05BD32C71EC22970004C6F89 /* Constants.swift in Sources */,
+				05BD32BF1EC217D3004C6F89 /* StudentDetailController.swift in Sources */,
+				05BD32C51EC21918004C6F89 /* StudentTableViewCell.swift in Sources */,
+				05BD32C11EC21815004C6F89 /* AddStudentController.swift in Sources */,
 				05BD328A1EC215EF004C6F89 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
