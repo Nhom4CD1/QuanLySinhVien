@@ -16,17 +16,16 @@ class StudentDetailController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet weak var txtFMaSV: UITextField!
     @IBOutlet weak var txtFTruong: UITextField!
     @IBOutlet weak var txtFTuoi: UITextField!
+    @IBOutlet weak var txtFGioiTinh: UITextField!
     @IBOutlet weak var txtViewChuThich: UITextView!
     @IBOutlet weak var imgAnhDaiDien: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // numberPad without "." button, decimalPad has "."
-        /*textFieldAge.keyboardType = UIKeyboardType.numberPad
-         textFieldID.keyboardType = UIKeyboardType.numberPad*/
         txtFTen.text = studentModel.name
         txtFMaSV.text = studentModel.id
         txtFTuoi.text = studentModel.age
         txtFTruong.text = studentModel.university
+        txtFGioiTinh.text = studentModel.gioitinh
         txtViewChuThich.text = studentModel.descript
         imgAnhDaiDien.image = studentModel.image
     }
@@ -49,7 +48,7 @@ class StudentDetailController: UITableViewController, UIImagePickerControllerDel
         picker.dismiss(animated: true, completion: nil)
     }
     
-    //MARK : - User press choose image
+    //MARK : Người dùng nhấn chọn image
     @IBAction func btnChonAnhAction(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -77,15 +76,15 @@ class StudentDetailController: UITableViewController, UIImagePickerControllerDel
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    // MARK: - User click button save
+    // MARK: -  click button save
     
     @IBAction func btnLuuAction(_ sender: UIBarButtonItem) {
-        if txtFTen.text!.isEmpty || txtFMaSV.text!.isEmpty || txtFTruong.text!.isEmpty ||  txtViewChuThich.text!.isEmpty ||  txtFTuoi.text!.isEmpty{
-            //create alert
-            let alert = UIAlertController(title: "Notification", message: "Please enter full information", preferredStyle: UIAlertControllerStyle.alert);
-            //add an action
+        if txtFTen.text!.isEmpty || txtFMaSV.text!.isEmpty || txtFTruong.text!.isEmpty ||  txtViewChuThich.text!.isEmpty ||  txtFTuoi.text!.isEmpty ||  txtFGioiTinh.text!.isEmpty {
+            //Tạo thông báo
+            let alert = UIAlertController(title: "Thông Báo", message: "Bạn cần điền đủ thông tin", preferredStyle: UIAlertControllerStyle.alert);
+            //Thêm một action
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
-            //show alert
+            //Hiện thông báo
             self.present(alert, animated: true, completion: nil);
         }
         else {
@@ -96,17 +95,14 @@ class StudentDetailController: UITableViewController, UIImagePickerControllerDel
             studentModel.descript = txtViewChuThich.text!
             studentModel.image = imgAnhDaiDien.image!
         }
-        // Back To Management Student Screen
+        // Trở lại màn hình Management Student
         self.navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - UITextFieldDelegate ( Keyboard will  disable when press return )
-    // User must set delegate from this textfield to this view
+    // MARK: - UITextFieldDelegate ( Keyboard sẽ ẩn khi nhấn  return )
+    // Cần set delegate từ textfield này đến view tương ứng
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //textFieldName.resignFirstResponder()
-        /*textFieldID.resignFirstResponder()
-         textFieldAge.resignFirstResponder()
-         textFieldUni.resignFirstResponder()*/
+        
         if txtFTen.isEditing {
             txtFTen.resignFirstResponder()
         } else if txtFTruong.isEditing {
@@ -116,12 +112,13 @@ class StudentDetailController: UITableViewController, UIImagePickerControllerDel
     }
     
     
-    // MARK: - UIScrollViewDelegate ( Keyboard will disable when scroll the UIView )
+    // MARK: - UIScrollViewDelegate ( Keyboard sẽ ẩn khi cuộn the UIView )
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         txtFTen.resignFirstResponder()
         txtFMaSV.resignFirstResponder()
         txtFTuoi.resignFirstResponder()
         txtFTruong.resignFirstResponder()
+        txtFGioiTinh.resignFirstResponder()
         txtViewChuThich.resignFirstResponder()
     }
 }

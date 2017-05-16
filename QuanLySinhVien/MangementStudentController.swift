@@ -9,23 +9,23 @@
 import UIKit
 
 enum selectedScope:Int {
-    case name = 0
-    case id = 1
-    case age = 2
-    case university = 3
+    case ten = 0
+    case  mssv = 1
+    case tuoi = 2
+    case truong = 3
+    case gioitinh = 4
 }
 
 
 class MangementStudentController: UITableViewController, UISearchBarDelegate{
     //MARK: - Property
-    //let searchController = UISearchController(searchResultsController: nil)
-    let searchBar = UISearchBar(frame: CGRect(x:0,y:0,width:(UIScreen.main.bounds.width),height:70))
+       let searchBar = UISearchBar(frame: CGRect(x:0,y:0,width:(UIScreen.main.bounds.width),height:70))
     
-    //get all students
+    //Lấy tất cả Sinh Viên
     lazy var students: [StudentModel] = {
         return StudentModel.createStudent()
     }()
-    //get initial students for search
+    //Lấy initial students cho việc Tìm kiếm
     lazy var initialStudentModel: [StudentModel] = {
         return StudentModel.createStudent()
     }()
@@ -38,7 +38,7 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
     
     func searchBarSetup() {
         searchBar.showsScopeBar = true
-        searchBar.scopeButtonTitles = ["Name","ID","Age","University"]
+        searchBar.scopeButtonTitles = ["Tên","MSSV","Tuổi","Giới Tính", "Trường"]
         searchBar.selectedScopeButtonIndex = 0
         searchBar.delegate = self
         self.tableView.tableHeaderView = searchBar
@@ -71,29 +71,29 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
     func filterTableView(ind:Int,text:String) {
         tableView.reloadData()
         switch ind {
-        case selectedScope.name.rawValue:
-            //fix of not searching when backspacing
+        case selectedScope.ten.rawValue:
+            //sửa lỗi not searching khi backspacing
             students = initialStudentModel.filter({ (stu) -> Bool in
                 return stu.name.lowercased().contains(text.lowercased())
             })
             self.tableView.reloadData()
             
-        case selectedScope.id.rawValue:
-            //fix of not searching when backspacing
+        case selectedScope.mssv.rawValue:
+            //sửa lỗi not searching khi backspacing
             students = initialStudentModel.filter({ (stu) -> Bool in
                 return stu.id.lowercased().contains(text.lowercased())
             })
             self.tableView.reloadData()
             
-        case selectedScope.age.rawValue:
-            //fix of not searching when backspacing
+        case selectedScope.tuoi.rawValue:
+            //sửa lỗi not searching khi backspacing
             students = initialStudentModel.filter({ (stu) -> Bool in
                 return stu.age.lowercased().contains(text.lowercased())
             })
             self.tableView.reloadData()
             
-        case selectedScope.university.rawValue:
-            //fix of not searching when backspacing
+        case selectedScope.truong.rawValue:
+            //sửa lỗi not searching khi backspacing
             students = initialStudentModel.filter({ (stu) -> Bool in
                 return stu.university.lowercased().contains(text.lowercased())
             })
@@ -108,19 +108,19 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Home Screen Appear
+    // MARK: - Màn hình chính
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Constants.isLoadDataAgain {
             let student: StudentModel = Constants.student
             students.append(student)
-            initialStudentModel = students // reload initialStudentModel
+            initialStudentModel = students // reload lại khai báo initialStudentModel
             tableView.reloadData()
             Constants.isLoadDataAgain = false
         }
         else{
             tableView.reloadData()
-            initialStudentModel = students // reload initialStudentModel
+            initialStudentModel = students // reload lại khai báo initialStudentModel
         }
         animateTable()
     }
@@ -128,12 +128,11 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+                return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        // return the number of rows
         return students.count
     }
     
@@ -149,12 +148,13 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
         cell.lblMaSV.text = student.id
         cell.lblTruong.text = student.university
         cell.lblTuoi.text = student.age
+        cell.lblGioiTinh.text = student.gioitinh
         cell.imgStudent.image = student.image
         
         return cell
     }
     
-    //show detail
+    //Hiện chi tiết
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "StudentDetail") {
             // initialize new view controller and cast it as your view controller
@@ -168,27 +168,27 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
         }
     }
     
-    //MARK: - Delete when user swipe to left
+    //MARK: - Xoá khi người dùng swipe to left
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete){
             students.remove(at: indexPath.row)
-            //update table view with new data source
+            //Cạp nhật table view khi  data source thay đổi
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            initialStudentModel = students // reload initialStudentModel
+            initialStudentModel = students // reload lại khai báo initialStudentModel
         }
     }
     
-    //MARK: - Sort when user click edit button
+    //MARK: - Sort khi người dùng click edit button
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //get data in sourceIndexPath
+        //Lấy data thông qua sourceIndexPath
         let currentStudentModel = students[sourceIndexPath.row];
         students.remove(at: sourceIndexPath.row)
         students.insert(currentStudentModel, at: destinationIndexPath.row)
-        initialStudentModel = students // reload initialStudentModel
+        initialStudentModel = students // reload lại khai báo initialStudentModel
     }
     
-    //MARK: - Animation for TableView
+    //MARK: - Animation cho TableView
     func animateTable() {
         
         let cells = tableView.visibleCells
@@ -208,7 +208,7 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
         }
     }
     
-    // UIScrollViewDelegate ( Keyboard will disable when scroll the UIView )
+    // UIScrollViewDelegate ( Keyboard sẽ ẩn khi scroll the UIView )
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }

@@ -14,6 +14,8 @@ class StudentTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMaSV: UILabel!
     @IBOutlet weak var lblTruong: UILabel!
     @IBOutlet weak var lblTuoi: UILabel!
+    //lblGioiTinh
+    @IBOutlet weak var lblGioiTinh: UILabel!
     @IBOutlet weak var imgStudent: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -14,21 +14,13 @@ class AddStudentController: UITableViewController, UIImagePickerControllerDelega
     @IBOutlet weak var txtFMaSV: UITextField!
     @IBOutlet weak var txtFTruong: UITextField!
     @IBOutlet weak var txtFTuoi: UITextField!
+    @IBOutlet weak var txtFGioiTinh: UITextField!
     @IBOutlet weak var txtViewChuThich: UITextView!
     @IBOutlet weak var imgThemSV: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        // numberPad without "." button, decimalPad has "."
-        /*txtFTuoi.keyboardType = UIKeyboardType.numberPad
-         txtFMaSV.keyboardType = UIKeyboardType.numberPad*/
-        
-    }
+            }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -75,30 +67,30 @@ class AddStudentController: UITableViewController, UIImagePickerControllerDelega
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    //MARK :- User press button Save
+    //MARK :- Nhấn button Save
     @IBAction func btnLuuAction(_ sender: UIBarButtonItem) {
         if txtFTen.text!.isEmpty || txtFMaSV.text!.isEmpty || txtFTruong.text!.isEmpty ||  txtViewChuThich.text!.isEmpty ||  txtViewChuThich.text!.isEmpty || imgThemSV.image == nil{
-            //create alert
+            //Tạo một cảnh báo
             let alert = UIAlertController(title: "Notification", message: "Please enter full information", preferredStyle: UIAlertControllerStyle.alert);
-            //add an action
+            //Thêm một action
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
-            //show alert
+            //Hiện thông báo
             self.present(alert, animated: true, completion: nil);
             
         }
         else {
             Constants.isLoadDataAgain = true
-            let age = Int(txtFTuoi.text!)! // "!"unwraped optional
-            let student: StudentModel = StudentModel(named: txtFTen.text!, identify: txtFMaSV.text!, school: txtFTruong.text!, description: txtViewChuThich.text!, aged: String(describing: age), imaged: imgThemSV.image!)
+            let age = Int(txtFTuoi.text!)!
+            let student: StudentModel = StudentModel(named: txtFTen.text!, identify: txtFMaSV.text!, school: txtFTruong.text!, description: txtViewChuThich.text!, aged: String(describing: age), gioitinh: txtFGioiTinh.text!, imaged: imgThemSV.image!)
             Constants.student = student
-            // Back To Management Student Screen
+            // Trở về màn hình Management Student
             self.navigationController?.popViewController(animated: true)
         }
         
     }
     
-    // UITextFieldDelegate ( Keyboard will  disable when press return )
-    // User must set delegate from this textfield to this view
+    // UITextFieldDelegate ( Keyboard sẽ ẩn khi nhấn nút return )
+    //cần set delegate  textfield tới view
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if txtFTen.isEditing {
             txtFMaSV.becomeFirstResponder()
@@ -108,7 +100,7 @@ class AddStudentController: UITableViewController, UIImagePickerControllerDelega
         return true
     }
     
-    // UIScrollViewDelegate ( Keyboard will disable when scroll the UIView )
+    // UIScrollViewDelegate ( Keyboard sẽ ẩn khi scroll  UIView )
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         txtFTen.resignFirstResponder()
         txtFMaSV.resignFirstResponder()
