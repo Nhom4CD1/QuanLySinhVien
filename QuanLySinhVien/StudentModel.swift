@@ -32,7 +32,7 @@ class StudentModel: NSObject {
         
         var students = [StudentModel]()
         
-        students.append(StudentModel(named: "Như Quỳnh", identify: "013", school: "Ngoại Thương", description: "NTH", aged: "22", gioitinh: "Nu", imaged: #imageLiteral(resourceName: "svnu")))
+        students.append(StudentModel(named: "Như Quỳnh", identify: "013", school: "Ngoại Thương", description: "NTH", aged: "22", gioitinh: "Nữ", imaged: #imageLiteral(resourceName: "svnu")))
         students.append(StudentModel(named: "Tường Vy", identify: "014", school: "Kinh Tế", description: "NTH", aged: "23", gioitinh: "Nữ",
                                      imaged: #imageLiteral(resourceName: "svnu2") ))
         students.append(StudentModel(named: "Văn Nam", identify: "456", school: "SPKT", description: "SPKT", aged: "26", gioitinh: "Nam", imaged: #imageLiteral(resourceName: "svnam1")))

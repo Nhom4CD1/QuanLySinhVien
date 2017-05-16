@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+//Chức năng search, tìm kiếm theo loại:
 enum selectedScope:Int {
     case ten = 0
     case  mssv = 1
     case tuoi = 2
-    case truong = 3
-    case gioitinh = 4
+    case gioitinh = 3
+    case truong = 4
 }
 
 
@@ -91,7 +91,12 @@ class MangementStudentController: UITableViewController, UISearchBarDelegate{
                 return stu.age.lowercased().contains(text.lowercased())
             })
             self.tableView.reloadData()
-            
+        case selectedScope.gioitinh.rawValue:
+            //sửa lỗi not searching khi backspacing
+            students = initialStudentModel.filter({ (stu) -> Bool in
+                return stu.gioitinh.lowercased().contains(text.lowercased())
+            })
+            self.tableView.reloadData()
         case selectedScope.truong.rawValue:
             //sửa lỗi not searching khi backspacing
             students = initialStudentModel.filter({ (stu) -> Bool in
